@@ -11,3 +11,9 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+#loading-gif{
+  margin-top: 30%;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
