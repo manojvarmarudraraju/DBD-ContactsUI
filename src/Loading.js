@@ -1,5 +1,8 @@
-export default () => {
+import loading from './loading.gif'
+
+var Loading = () => {
     return (
-        <img src="./loading.gif" id="loading-gif" alt="Loading"/>
+        <img src={loading} id="loading-gif" alt="Loading"/>
     );
 }
+export default Loading;

@@ -17,7 +17,7 @@ class App extends React.Component{
 
   render(){
     const { data, loading, error } = this.props;
-    console.log(data);
+    console.log(loading);
     return (
       <div className="App">
         <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
@@ -35,7 +35,7 @@ class App extends React.Component{
 function mapStateToProps(state) {
   return {
     data: state.contacts.data,
-    loading: state.contacts.loading,
+    loading: state.contacts.data_loading,
     error: state.contacts.error
   }
 }

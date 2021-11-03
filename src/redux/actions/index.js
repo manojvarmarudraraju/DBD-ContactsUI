@@ -5,21 +5,22 @@ var getData = () => {
         return {type: actionTypes.GET_DATA}     
 };
 var getDataSuccess = (data) => {
+    console.log("Data",data);
         var payload = {
-            data: data.data,
-            options: data.options
+            data: data.data.data,
+            options: data.data.options
         }
         return {type: actionTypes.GET_DATA_SUCCESS, payload};
 };
 var getDataFailure = (error) => {
-        return {type: actionTypes.GET_DATA_FAILURE, payload: error};
+        return {type: actionTypes.GET_DATA_FAILURE, payload: error}; 
 };
 export var loadData = () => {
     return (dispatch) => {
         dispatch(getData());
         getDataCall().then((data) => {
             dispatch(getDataSuccess(data));
-        }).error((error) => {
+        }).catch((error) => {
             dispatch(getDataFailure(error));
         });
     }
