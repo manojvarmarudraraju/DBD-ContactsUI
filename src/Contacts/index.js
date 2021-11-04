@@ -7,6 +7,10 @@ import Card from 'react-bootstrap/Card';
 import Table from 'react-bootstrap/Table';
 import FormControl from 'react-bootstrap/FormControl';
 import Button from 'react-bootstrap/Button';
+import Accordion from 'react-bootstrap/Accordion';
+import Form from 'react-bootstrap/Form';
+import * as boot from 'react-bootstrap';
+import { Pencil, Trash } from 'react-bootstrap-icons';
 
 class Contacts extends Component {
     constructor(props){
@@ -24,7 +28,251 @@ class Contacts extends Component {
         event.preventDefault();
     }
 
-    
+    addressItem = (add_arr) => {
+        var options = this.props.options.filter((values) => {return values.TYPE_CONNECTION === 2});
+        var options_map = {};
+        options.forEach((values) => {
+            options_map[values.TYPE_IDENTIFIER] = values;
+        });
+        return (
+            <div>
+                {add_arr.map((values, index) => {
+                    if(values.address_type in options_map){
+                        return (
+                        <Card style={{margin: "2%"}}>
+                            <Card.Header>
+                                {options_map[parseInt(values.address_type)]["TYPE_VALUE"]}
+                            </Card.Header>
+                            <Card.Body>
+                            <boot.Row>
+                                <boot.Col>
+                                    <boot.FloatingLabel
+                                        controlId="floatingInput"
+                                        label="Address"
+                                        className="mb-3"
+                                    >
+                                        <Form.Control type="text" placeholder="Readonly input here..." value={values.address!==null && values.address !==undefined? values.address:" "} readOnly />
+                                    </boot.FloatingLabel>
+                                </boot.Col>
+                                <boot.Col>
+                                    <boot.FloatingLabel
+                                        controlId="floatingInput"
+                                        label="City"
+                                        className="mb-3"
+                                    >
+                                        <Form.Control type="text" placeholder="Readonly input here..." value={values.city!==null && values.city!==undefined?values.city:" "} readOnly />
+                                    </boot.FloatingLabel>
+                                </boot.Col>
+                                <boot.Col>
+                                    <boot.FloatingLabel
+                                        controlId="floatingInput"
+                                        label="State"
+                                        className="mb-3"
+                                    >
+                                        <Form.Control type="text" placeholder="Readonly input here..." value={values.state!==null || values.state!==undefined?values.state:" "} readOnly />
+                                    </boot.FloatingLabel>
+                                </boot.Col>
+                                <boot.Col>
+                                    <boot.FloatingLabel
+                                        controlId="floatingInput"
+                                        label="ZIP"
+                                        className="mb-3"
+                                    >
+                                        <Form.Control type="text" placeholder="Readonly input here..." value={values.zip!==null || values.zip!==undefined?values.zip:" "} readOnly />
+                                    </boot.FloatingLabel>
+                                </boot.Col>
+                            </boot.Row>
+                            </Card.Body>
+                        </Card>
+                        );
+                    } else{
+                        console.log("Important", values);
+                        return (<div></div>);
+                    }
+                })}
+            </div>   
+        );
+    }
+
+    phoneItem = (phone_vals) => {
+        var options = this.props.options.filter((values) => {return values.TYPE_CONNECTION === 1});
+        var options_map = {};
+        options.forEach((values) => {
+            options_map[values.TYPE_IDENTIFIER] = values;
+        });
+        return (
+            <div>
+                {
+                    phone_vals.map((values) => {
+                        if(values.phone_type in options_map) {
+                        return (
+                            <Card style={{margin: "2%"}}>
+                                <Card.Header>
+                                    {options_map[parseInt(values.phone_type)]["TYPE_VALUE"]}
+                                </Card.Header>
+                                <Card.Body>
+                                    <boot.Row>
+                                        <boot.Col>
+                                            <boot.FloatingLabel
+                                            controlId="floatingInput"
+                                            label="Area Code"
+                                            className="mb-3"
+                                            >
+                                                <Form.Control type="text" placeholder="Readonly input here..." value={values.area_code!==null || values.area_code!==undefined?values.area_code:" "} readOnly />
+                                            </boot.FloatingLabel>
+                                        </boot.Col>
+                                        <boot.Col>
+                                            <boot.FloatingLabel
+                                            controlId="floatingInput"
+                                            label="Mobile Number"
+                                            className="mb-3"
+                                            >
+                                                <Form.Control type="text" placeholder="Readonly input here..." value={values.mobile_number!==null || values.mobile_number!==undefined?values.mobile_number:" "} readOnly />
+                                            </boot.FloatingLabel>
+
+                                        </boot.Col>
+                                    </boot.Row>
+                                </Card.Body>
+                            </Card>
+                        )
+                        
+                        }
+                    else {
+                        return (<div></div>);
+                    }
+                })}
+            </div>
+        );
+    }
+
+    dateItem = (date_arr) => {
+        var options = this.props.options.filter((values) => {return values.TYPE_CONNECTION === 3});
+        var options_map = {};
+        options.forEach((values) => {
+            options_map[values.TYPE_IDENTIFIER] = values;
+        });
+        return (<div>
+            { date_arr.map((values) => {
+
+                if(values.date_type in options_map){
+                    return (
+                        <Card style={{margin: "2%"}}>
+                            <Card.Header>
+                                {options_map[parseInt(values.date_type)]["TYPE_VALUE"]}
+                            </Card.Header>
+                            <Card.Body>
+                                <boot.Row>
+                                    <boot.Col>
+                                        <boot.FloatingLabel
+                                        controlId="floatingInput"
+                                        label="Date"
+                                        className="mb-3"
+                                        >
+                                            <Form.Control type="text" placeholder="Readonly input here..." value={values.date_date!==null || values.date_date!==undefined?values.date_date:" "} readOnly />
+                                        </boot.FloatingLabel>
+                                    </boot.Col>
+                                </boot.Row>
+                            </Card.Body>
+                        </Card>
+                    );
+                } else{
+                    return (<div></div>);
+                }
+            })}
+        </div>);
+    }
+
+    contactItem = (index) => {
+        var data = this.props.data[index];
+
+        return (
+            <div>
+                <boot.Row>
+                    <boot.Col>
+                        <boot.FloatingLabel
+                            controlId="floatingInput"
+                            label="First Name"
+                            className="mb-3"
+                        >
+                            <Form.Control type="text" placeholder="Readonly input here..." value={data.fname!==null && data.fname!==undefined?data.fname:" "} readOnly />
+                        </boot.FloatingLabel>
+                    </boot.Col>
+                    <boot.Col>
+                        <boot.FloatingLabel
+                            controlId="floatingInput"
+                            label="Middle Name"
+                            className="mb-3"
+                        >
+                            <Form.Control type="text" placeholder="Readonly input here..." value={data.mname!==null && data.mname!==undefined?data.mname:" "} readOnly />
+                        </boot.FloatingLabel>
+                    </boot.Col>
+                    <boot.Col>
+                        <boot.FloatingLabel
+                            controlId="floatingInput"
+                            label="Last Name"
+                            className="mb-3"
+                        >
+                            <Form.Control type="text" placeholder="Readonly input here..." value={data.lname!==null || data.lname!==undefined?data.lname:" "} readOnly />
+                        </boot.FloatingLabel>
+                    </boot.Col>
+                </boot.Row>
+                {data.address.length > 0 ?
+                <Card>
+                    <h4>Addresses</h4>
+                    <Card.Body>
+                        {this.addressItem(data.address)}
+                    </Card.Body>
+                </Card>
+                :<div></div>}
+                {data.phone.length > 0?
+                <Card className="mt-1">
+                    <h4>Phone</h4>
+                    <Card.Body>
+                        {this.phoneItem(data.phone)}
+                    </Card.Body>
+                </Card>
+                : <div></div>}
+                
+                {data.date.length > 0?<Card className="mt-1">
+                    <h4>Date</h4>
+                    <Card.Body>
+                        {this.dateItem(data.date)}
+                    </Card.Body>
+                </Card>:<div></div>}
+            </div>
+        );
+    }
+
+    contactList = () => {
+        var { data } = this.props;
+        return (
+            <Accordion defaultActiveKey="0">
+                {data.map((value, index) => {
+                    var name = (value.fname!==null && value.fname!==undefined?value.fname:"")+(value.mname !== null && value.mname!== undefined ?value.mname:"")+(value.lname !== null && value.lname !== undefined?value.lname:"")
+                    return (
+                        <Accordion.Item eventKey={"Contact-item-"+String(index)}>
+                            <Accordion.Header >
+                                {name}
+                                <div id="div-id" className="justify-content-right">
+                                    <Button className="btn btn-light">
+                                        <Pencil />
+                                    </Button>
+                                    <Button className="btn btn-light">
+                                        <Trash />
+                                    </Button>
+                                </div>
+                            </Accordion.Header>
+                            <Accordion.Body>
+                                {this.contactItem(index)}
+                            </Accordion.Body>
+                        </Accordion.Item>
+                    );
+                })}
+            </Accordion>
+        );
+    }
+
+
 
     render(){
         console.log(this.state.search);
@@ -55,15 +303,17 @@ class Contacts extends Component {
                             </tr>
                         </tbody>
                     </Table>
+                    {this.contactList()}
                 </Card.Body>
-            </Card> 
+            </Card>
         );
     }
 }
 
 function mapStateToProps(state) {
     return {
-      data: state.contacts.data
+      data: state.contacts.data,
+      options: state.contacts.options,
     }
 }
 
