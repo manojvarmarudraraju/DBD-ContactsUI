@@ -6,4 +6,8 @@ function getDataCall(){
     return axios.get(endpoint).then(response => response);
 }
 
-export {getDataCall};
+function deleteContactCall(data){
+    return axios.delete(endpoint, {data: data}).then(response => response);
+}
+
+export {getDataCall, deleteContactCall};

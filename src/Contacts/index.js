@@ -11,6 +11,7 @@ import Accordion from 'react-bootstrap/Accordion';
 import Form from 'react-bootstrap/Form';
 import * as boot from 'react-bootstrap';
 import { Pencil, Trash } from 'react-bootstrap-icons';
+import { withRouter } from "react-router";
 
 class Contacts extends Component {
     constructor(props){
@@ -243,6 +244,20 @@ class Contacts extends Component {
         );
     }
 
+    deleteContactLocal = (index) => {
+        var contacts = this.props.data[index];
+        var contact = [contacts.contact_id]
+        var address = contacts.address.map((value) => {return value.address_id});
+        var phone = contacts.phone.map((value) => {return value.phone_id});
+        var date = contacts.date.map((value) => {return value.date_id});
+
+        this.props.deleteContact({contact, address, phone, date});
+    }
+
+    editContact = (index) => {
+        this.props.history.push("/edit/"+String(index));
+    }
+
     contactList = () => {
         var { data } = this.props;
         return (
@@ -254,12 +269,8 @@ class Contacts extends Component {
                             <Accordion.Header >
                                 {name}
                                 <div id="div-id" className="justify-content-right">
-                                    <Button className="btn btn-light">
-                                        <Pencil />
-                                    </Button>
-                                    <Button className="btn btn-light">
-                                        <Trash />
-                                    </Button>
+                                    <Pencil onClick={() => {this.editContact(index);}} />
+                                    <Trash onClick={() => {this.deleteContactLocal(index);}}/>
                                 </div>
                             </Accordion.Header>
                             <Accordion.Body>
@@ -322,4 +333,4 @@ function mapDispatchToProps(dispatch) {
     return contactsActionDispatchers;
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Contacts);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Contacts));

@@ -13,7 +13,6 @@ function dataReducer(currentState = initialState, action){
             ...currentState,
             data_loading: true,
             data_error: null,
-            options: []
         }
         return newState;
     }
