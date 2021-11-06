@@ -10,7 +10,9 @@ class App extends React.Component{
 
   componentDidMount(){
     console.log(this.props);
-    this.props.loadData();
+    if(this.props.reload){
+      this.props.loadData();
+    }   
   }
 
   render(){
@@ -28,7 +30,8 @@ function mapStateToProps(state) {
   return {
     data: state.contacts.data,
     loading: state.contacts.data_loading,
-    error: state.contacts.error
+    error: state.contacts.error,
+    reload: state.contacts.reload
   }
 }
 

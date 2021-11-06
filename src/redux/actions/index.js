@@ -1,6 +1,9 @@
 import actionTypes from '../types';
-import { getDataCall, deleteContactCall, updateContactCall } from './axiosCalls';
+import { getDataCall, deleteContactCall, updateContactCall, addContactCall } from './axiosCalls';
 
+var makeReloadFalse = () => {
+    return {type: actionTypes.MAKE_RELOAD_FALSE}
+};
 var getData = () => {
         return {type: actionTypes.GET_DATA}     
 };
@@ -42,8 +45,24 @@ export var updateContact = (data, history) => {
     return (dispatch) => {
         updateContactCall(data).then((fullData) => {
             dispatch(getDataSuccess(fullData));
+            dispatch(makeReloadFalse());
+        }).then(() => {
+            history.push("/");
         }).catch((error) => {
             dispatch(getDataFailure(error));
-        })
+        });
+    }
+}
+
+export var addContact = (data, history) => {
+    return (dispatch) => {
+        addContactCall(data).then((fullData) => {
+            dispatch(getDataSuccess(fullData));
+            dispatch(makeReloadFalse());
+        }).then(() => {
+            history.push("/");
+        }).catch((error) => {
+            dispatch(getDataFailure(error));
+        });
     }
 }

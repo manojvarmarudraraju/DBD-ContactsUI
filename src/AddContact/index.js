@@ -7,19 +7,19 @@ import { Trash } from 'react-bootstrap-icons';
 import * as contactsActionCreators from '../redux/actions';
 import { bindActionCreators } from 'redux';
 
-class EditContacts extends Component {
+class AddContact extends Component {
     constructor(props) {
         super(props);
         console.log(this.props.data)
-        var dummy = Object.assign({},this.props.data[this.props.match.params.index]);
-        this.state = {selectedPhone: null, selectedAddress: null, selectedDate: null, address_delete:[], phone_delete: [], date_delete: [], ...dummy}
+        this.state = {fname: "", mname: "", lname: "", address: [], phone: [], date: []};
     }
 
     onSubmit = () => {
-        // dummy.phone = dummy.phone.filter((value) => {return "phone_do" in value && value["phone_do"]});
-        // dummy.address = dummy.address.filter((value) => {return "add_do" in value && value["add_do"]});
-        // dummy.date = dummy.date.filter((value) => {return "date_do" in value && value["date_do"]});
-        this.props.updateContact(this.state, this.props.history);
+        var dummy = this.state;
+        dummy.phone = dummy.phone.filter((value) => {return "phone_do" in value && value["phone_do"]});
+        dummy.address = dummy.address.filter((value) => {return "add_do" in value && value["add_do"]});
+        dummy.date = dummy.date.filter((value) => {return "date_do" in value && value["date_do"]});
+        this.props.addContact(this.state, this.props.history);
     }
 
     detailChange = (event) => {
@@ -466,4 +466,4 @@ function mapDispatchToProps(dispatch) {
     return contactsActionDispatchers;
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(EditContacts));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(AddContact));

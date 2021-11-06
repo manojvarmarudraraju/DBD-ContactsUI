@@ -35,6 +35,13 @@ function dataReducer(currentState = initialState, action){
         }
         return newState;
     }
+    if(action.type === 'MAKE_RELOAD_FALSE'){
+        const newState = {
+            ...currentState,
+            reload: false
+        }
+        return newState;
+    }
 
     return currentState;
 }

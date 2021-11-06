@@ -283,6 +283,9 @@ class Contacts extends Component {
         );
     }
 
+    addRedirect = () => {
+        this.props.history.push('/add');
+    }
 
 
     render(){
@@ -307,7 +310,7 @@ class Contacts extends Component {
                                     </InputGroup>
                                 </td>
                                 <td colSpan="1">
-                                    <Button variant="outline-secondary" id="button-addon2">
+                                    <Button variant="outline-secondary" id="button-addon2" onClick={()=> {this.addRedirect()}}>
                                         ADD
                                     </Button>
                                 </td>

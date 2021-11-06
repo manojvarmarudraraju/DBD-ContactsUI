@@ -10,6 +10,7 @@ import { BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import Navbar from 'react-bootstrap/Navbar';
 import Container from 'react-bootstrap/Container';
 import EditContact from './EditContact';
+import AddContact from './AddContact';
 
 
 
@@ -25,7 +26,7 @@ ReactDOM.render(
           </Navbar>
         <Switch>
           <Route exact path='/' component={App} />
-          <Route path='/add' component={App} />
+          <Route path='/add' component={AddContact} />
           <Route path='/edit/:index' component={EditContact} />
           <App />
         </Switch>

@@ -14,4 +14,8 @@ function updateContactCall(data){
     return axios.post(endpoint, {data: data}).then(response => response);
 }
 
-export {getDataCall, deleteContactCall, updateContactCall};
+function addContactCall(data){
+    return axios.put(endpoint, {data: data}).then(response => response);
+}
+
+export {getDataCall, deleteContactCall, updateContactCall, addContactCall};
