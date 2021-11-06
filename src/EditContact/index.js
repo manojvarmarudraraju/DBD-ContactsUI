@@ -15,6 +15,13 @@ class EditContacts extends Component {
         this.state = {selectedPhone: null, selectedAddress: null, selectedDate: null, address_delete:[], phone_delete: [], date_delete: [], ...dummy}
     }
 
+    onSubmit = () => {
+        // dummy.phone = dummy.phone.filter((value) => {return "phone_do" in value && value["phone_do"]});
+        // dummy.address = dummy.address.filter((value) => {return "add_do" in value && value["add_do"]});
+        // dummy.date = dummy.date.filter((value) => {return "date_do" in value && value["date_do"]});
+        this.props.updateContact(this.state);
+    }
+
     detailChange = (event) => {
         var name = event.target.name;
         var value = event.target.value;
@@ -51,7 +58,7 @@ class EditContacts extends Component {
                 "date_date": ""
             });
             this.setState({
-                address: old_date
+                date: old_date
             });
         }
 
@@ -439,6 +446,8 @@ class EditContacts extends Component {
                             {this.Date()}
                         </boot.Card.Body>
                     </boot.Card>
+
+                    <boot.Button onClick={this.onSubmit}>Submit</boot.Button>
                 </boot.Card.Body>
             </boot.Card>
         );

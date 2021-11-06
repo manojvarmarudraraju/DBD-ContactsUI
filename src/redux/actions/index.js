@@ -1,5 +1,5 @@
 import actionTypes from '../types';
-import { getDataCall, deleteContactCall } from './axiosCalls';
+import { getDataCall, deleteContactCall, updateContactCall } from './axiosCalls';
 
 var getData = () => {
         return {type: actionTypes.GET_DATA}     
@@ -31,6 +31,17 @@ export var deleteContact = (data) => {
         dispatch(getData());
         deleteContactCall(data).then((data) => {
             dispatch(getDataSuccess(data));
+        }).catch((error) => {
+            dispatch(getDataFailure(error));
+        })
+    }
+}
+
+export var updateContact = (data, history) => {
+    console.log(data);
+    return (dispatch) => {
+        updateContactCall(data).then((fullData) => {
+            dispatch(getDataSuccess(fullData));
         }).catch((error) => {
             dispatch(getDataFailure(error));
         })

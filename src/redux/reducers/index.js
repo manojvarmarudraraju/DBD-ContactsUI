@@ -5,6 +5,7 @@ var initialState = {
     data_loading: false,
     data_error: null,
     options: [],
+    reload: true
 }
 
 function dataReducer(currentState = initialState, action){
@@ -31,8 +32,6 @@ function dataReducer(currentState = initialState, action){
             ...currentState,
             data_loading: false,
             data_error: action.payload,
-            data: [],
-            options: []
         }
         return newState;
     }
