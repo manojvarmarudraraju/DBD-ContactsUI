@@ -32,6 +32,7 @@ export var loadData = () => {
             dispatch(getDataSuccess(data));
         }).catch((error) => {
             dispatch(getDataFailure(error));
+            window.alert(error);
         });
     }
 };
@@ -43,6 +44,7 @@ export var deleteContact = (data) => {
             dispatch(getDataSuccess(data));
         }).catch((error) => {
             dispatch(getDataFailure(error));
+            window.alert(error);
         })
     }
 }
@@ -57,6 +59,7 @@ export var updateContact = (data, history) => {
             history.push("/");
         }).catch((error) => {
             dispatch(getDataFailure(error));
+            window.alert(error);
         });
     }
 }
@@ -70,6 +73,7 @@ export var addContact = (data, history) => {
             history.push("/");
         }).catch((error) => {
             dispatch(getDataFailure(error));
+            window.alert(error);
         });
     }
 }
@@ -81,6 +85,7 @@ export var getWithSearch = (data) => {
             dispatch(makeReloadFalse());
         }).catch((error) => {
             dispatch(getDataFailure(error)); 
+            window.alert(error);
         })
     }
 }
