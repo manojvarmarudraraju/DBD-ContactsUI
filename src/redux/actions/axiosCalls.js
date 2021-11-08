@@ -1,9 +1,11 @@
 import axios from 'axios';
-
 const endpoint = "http://localhost:8000/contacts";
-
 function getDataCall(){
     return axios.get(endpoint).then(response => response);
+}
+
+function getWithSearchCall(data){
+    return axios.get(endpoint, {search: data}).then(response => response);
 }
 
 function deleteContactCall(data){
@@ -18,4 +20,4 @@ function addContactCall(data){
     return axios.put(endpoint, {data: data}).then(response => response);
 }
 
-export {getDataCall, deleteContactCall, updateContactCall, addContactCall};
+export {getDataCall, deleteContactCall, updateContactCall, addContactCall, getWithSearchCall};
