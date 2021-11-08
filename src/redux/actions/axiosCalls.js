@@ -1,11 +1,14 @@
 import axios from 'axios';
 const endpoint = "http://localhost:8000/contacts";
+
+const searchPoint = "http://localhost:8000/contactSearch"
+
 function getDataCall(){
     return axios.get(endpoint).then(response => response);
 }
 
 function getWithSearchCall(data){
-    return axios.get(endpoint, {search: data}).then(response => response);
+    return axios.post(searchPoint,{search: data}).then(response => response);
 }
 
 function deleteContactCall(data){

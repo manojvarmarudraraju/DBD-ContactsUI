@@ -4,6 +4,7 @@ var actionTypes = {
     GET_DATA_FAILURE: 'GET_DATA_FAILURE',
     MAKE_RELOAD_FALSE: 'MAKE_RELOAD_FALSE',
     MAKE_RELOAD_TRUE: 'MAKE_RELOAD_TRUE',
+    SET_SEARCH: 'SET_SEARCH',
 }
 
 export default actionTypes;

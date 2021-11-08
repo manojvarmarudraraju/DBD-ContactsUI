@@ -5,7 +5,10 @@ var initialState = {
     data_loading: false,
     data_error: null,
     options: [],
-    reload: true
+    reload: true,
+    search: {
+        search: ""
+    }
 }
 
 function dataReducer(currentState = initialState, action){
@@ -39,6 +42,13 @@ function dataReducer(currentState = initialState, action){
         const newState = {
             ...currentState,
             reload: false
+        }
+        return newState;
+    }
+    if(action.type === 'SET_SEARCH'){
+        const newState = {
+            ...currentState,
+            search: action.payload
         }
         return newState;
     }

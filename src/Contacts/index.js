@@ -2,32 +2,19 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as contactsActionCreators from '../redux/actions';
-import InputGroup from 'react-bootstrap/InputGroup';
 import Card from 'react-bootstrap/Card';
-import Table from 'react-bootstrap/Table';
-import FormControl from 'react-bootstrap/FormControl';
-import Button from 'react-bootstrap/Button';
 import Accordion from 'react-bootstrap/Accordion';
 import Form from 'react-bootstrap/Form';
 import * as boot from 'react-bootstrap';
 import { Pencil, Trash } from 'react-bootstrap-icons';
 import { withRouter } from "react-router";
+import SearchComponent from './Search';
 
 class Contacts extends Component {
     constructor(props){
         super(props);
-        this.state = {
-            search: '',
-        }
     }
-    onSearchChange = (event) => {
-        console.log(event);
-        this.setState({search: event.target.value});
-    }
-
-    onSearchClick = (event) => {
-        event.preventDefault();
-    }
+    
 
     addressItem = (add_arr) => {
         var options = this.props.options.filter((values) => {return values.TYPE_CONNECTION === 2});
@@ -283,40 +270,13 @@ class Contacts extends Component {
         );
     }
 
-    addRedirect = () => {
-        this.props.history.push('/add');
-    }
-
 
     render(){
-        console.log(this.state.search);
+
         return (
             <Card style={{margin: "2%"}}>
                 <Card.Body>
-                    <Table>
-                        <tbody style={{width: "100%"}}>
-                            <tr>
-                                <td colSpan="2">
-                                    <InputGroup className="mb-3">
-                                        <FormControl
-                                            placeholder="Search"
-                                            aria-label="Search"
-                                            aria-describedby="basic-addon2"
-                                            onChange={this.onSearchChange}
-                                        />
-                                        <Button onClick={this.onSearchClick} variant="outline-secondary" id="button-addon2">
-                                            Search
-                                        </Button>
-                                    </InputGroup>
-                                </td>
-                                <td colSpan="1">
-                                    <Button variant="outline-secondary" id="button-addon2" onClick={()=> {this.addRedirect()}}>
-                                        ADD
-                                    </Button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </Table>
+                    <SearchComponent />
                     {this.contactList()}
                 </Card.Body>
             </Card>
