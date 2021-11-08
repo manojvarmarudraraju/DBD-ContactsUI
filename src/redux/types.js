@@ -5,6 +5,7 @@ var actionTypes = {
     MAKE_RELOAD_FALSE: 'MAKE_RELOAD_FALSE',
     MAKE_RELOAD_TRUE: 'MAKE_RELOAD_TRUE',
     SET_SEARCH: 'SET_SEARCH',
+    GET_OPTION_DATA: 'GET_OPTION_DATA',
 }
 
 export default actionTypes;

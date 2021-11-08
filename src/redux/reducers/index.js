@@ -52,7 +52,13 @@ function dataReducer(currentState = initialState, action){
         }
         return newState;
     }
-
+    if(action.type === 'GET_OPTION_DATA'){
+        const newState = {
+            ...currentState,
+            options: action.payload
+        }
+        return newState;
+    }
     return currentState;
 }
 

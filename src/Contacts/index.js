@@ -254,11 +254,19 @@ class Contacts extends Component {
                     return (
                         <Accordion.Item eventKey={"Contact-item-"+String(index)}>
                             <Accordion.Header >
-                                {name}
-                                <div id="div-id" className="justify-content-right">
-                                    <Pencil onClick={() => {this.editContact(index);}} />
-                                    <Trash onClick={() => {this.deleteContactLocal(index);}}/>
-                                </div>
+                                <boot.Table>
+                                    <boot.Row>
+                                        <boot.Col>
+                                            {name}
+                                        </boot.Col>
+                                        <boot.Col>
+                                            <div id="div-id" style={{textAlign: "right"}} className="">
+                                                <Pencil style={{margin: "1%"}} onClick={() => {this.editContact(index);}} />
+                                                <Trash style={{margin: "1%"}} onClick={() => {this.deleteContactLocal(index);}}/>
+                                            </div>
+                                        </boot.Col>
+                                    </boot.Row>
+                                </boot.Table>
                             </Accordion.Header>
                             <Accordion.Body>
                                 {this.contactItem(index)}

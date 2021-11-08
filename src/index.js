@@ -6,11 +6,12 @@ import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Provider } from 'react-redux';
 import store from './redux/store';
-import { BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom';
 import Navbar from 'react-bootstrap/Navbar';
 import Container from 'react-bootstrap/Container';
 import EditContact from './EditContact';
 import AddContact from './AddContact';
+import AddOption from './AddOption';
 
 
 
@@ -20,12 +21,14 @@ ReactDOM.render(
       <Provider store={store} >
         <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
             <Container>
-              <Navbar.Brand href="#home">My Contacts</Navbar.Brand>
+              <Link to={"/"}><Navbar.Brand href="#home">My Contacts</Navbar.Brand></Link>
               <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+              <Link to={"/option"}>Add Option</Link>
             </Container>
           </Navbar>
         <Switch>
           <Route exact path='/' component={App} />
+          <Route path='/option' component={AddOption} />
           <Route path='/add' component={AddContact} />
           <Route path='/edit/:index' component={EditContact} />
           <App />
